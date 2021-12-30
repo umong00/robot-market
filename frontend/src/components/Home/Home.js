@@ -18,7 +18,10 @@ const Home = () => {
     return (
         <div className="home">
             {
-                isLoading && <Spin size="large" />
+                isLoading &&
+                <div className="loader">
+                    <Spin size="large" />
+                </div>
             }
             <Catalog items={items} />
         </div>

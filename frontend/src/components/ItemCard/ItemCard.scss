@@ -1,6 +1,5 @@
 .item-card {
-    border: 0.5px solid #C4C4C4;
-    box-shadow: 0px 4px 4px #e5e5e5;
+    box-shadow: 0 2px 7px 2px rgb(0 0 0 / 12%);
     margin: 10px;
     width: 200px;
 
@@ -36,6 +35,10 @@
             font-size: 14px;
         }
 
+        .price {
+            font-size: 14px;
+        }
+
         .in-stock {
             color: green;
         }
@@ -45,16 +48,27 @@
         }
     }
 
-    .actions {
+    .qty-box {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        margin-bottom: 10px;
 
         .ant-input-number {
+            margin-left: 15px;
             input {
                 padding-left: 20px;
                 font-weight: 600;
             }
+        }
+    }
+
+    .actions {
+
+        button {
+            width: 100%;
+            height: 40px;
+            font-size: 15px;
         }
     }
 }

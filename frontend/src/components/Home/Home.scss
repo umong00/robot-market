@@ -1,4 +1,10 @@
 .home {
     display: flex;
     height: calc(100vh - 125px);
+
+    .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

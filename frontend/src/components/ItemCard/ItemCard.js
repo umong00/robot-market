@@ -23,12 +23,15 @@ const ItemCard = (props) => {
                 <div className="item-details">
                     <span className="material">{material}</span>
                     <span className="name">{name}</span>
-                    <b>{price}</b>
+                    <b className="price">{price}</b>
                     <span className={`${stock ? 'in-stock' : 'out-of-stock'}`}>Availability: {stock}</span>
                     <span>{createdDate}</span>
                 </div>
+                <div className="qty-box">
+                    <span>Qty: </span>
+                    <InputNumber min={1} max={stock || 10} defaultValue={1} disabled={!stock} onChange={(e) => setQty(e)} />
+                </div>
                 <div className="actions">
-                    <InputNumber min={1} defaultValue={1} disabled={!stock} onChange={(e) => setQty(e)} />
                     <Button type="primary" disabled={!stock}>
                         <ShoppingCartOutlined />
                         Add to Cart
