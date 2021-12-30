@@ -1,0 +1,60 @@
+.item-card {
+    border: 0.5px solid #C4C4C4;
+    box-shadow: 0px 4px 4px #e5e5e5;
+    margin: 10px;
+    width: 200px;
+
+    .image-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+
+        img {
+            height: 100px;
+            width: 100px;
+        }
+    }
+
+    .item-details {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 13px;
+        padding: 10px;
+
+        span, b {
+            margin-bottom: 3px;
+        }
+
+        .material {
+            color: #b19975;
+            font-weight: 800;
+        }
+
+        .name {
+            font-size: 14px;
+        }
+
+        .in-stock {
+            color: green;
+        }
+
+        .out-of-stock {
+            color: red;
+        }
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .ant-input-number {
+            input {
+                padding-left: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+}
