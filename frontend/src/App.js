@@ -1,5 +1,8 @@
 import * as React from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from './components/Header/Header';
+import AppRoutes from './AppRoutes';
 
 function App() {
 
@@ -13,10 +16,10 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="App">
-        <h1>Robot Market</h1>
-        {/*Add your code here*/}
-      </div>
+      <Router>
+        <Header></Header>
+        <AppRoutes />
+      </Router>
     </QueryClientProvider>
   );
 }
