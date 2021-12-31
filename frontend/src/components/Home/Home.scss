@@ -12,5 +12,6 @@
     .view-port {
         display: flex;
         padding: 20px;
+        max-height: calc(100vh - 65px);
     }
 }

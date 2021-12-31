@@ -3,16 +3,28 @@ import { Button, InputNumber } from 'antd';
 import moment from 'moment';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import './ItemCard.scss';
+import { useSetRecoilState } from 'recoil';
+import { showCart } from '../../App.recoil';
 
 const ItemCard = (props) => {
     const [qty, setQty] = useState(1);
+
+    const setCartVisiblity = useSetRecoilState(showCart);
 
     const {item} = props;
     const {name, image, material, stock} = item;
     const createdDate = moment(new Date(item.createdAt)).format('DD-MM-YYYY');
     const price = new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB' }).format(item.price);
 
-
+    const addToCart = () => {
+        if (item.inCart) {
+            setCartVisiblity(true);
+        } else {
+            item.inCart = true;
+            item.qty = qty;
+            props.addToCart(item)
+        }
+    }
 
     return (
         <>
@@ -32,9 +44,11 @@ const ItemCard = (props) => {
                     <InputNumber min={1} max={stock || 10} defaultValue={1} disabled={!stock} onChange={(e) => setQty(e)} />
                 </div>
                 <div className="actions">
-                    <Button type="primary" disabled={!stock}>
+                    <Button type="primary" disabled={!stock} onClick={addToCart}>
                         <ShoppingCartOutlined />
-                        Add to Cart
+                        {
+                            item.inCart ? 'Go to Cart' : 'Add to Cart'
+                        }
                     </Button>
                 </div>
             </div>

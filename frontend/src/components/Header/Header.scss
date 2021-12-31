@@ -7,4 +7,15 @@
     padding: 10px 30px;
     box-sizing: border-box;
     color: white;
+
+    .cart {
+        position: absolute;
+        right: 35px;
+        cursor: pointer;
+
+        .anticon-shopping-cart {
+            color: white;
+            font-size: 30px;
+        }
+    }
 }

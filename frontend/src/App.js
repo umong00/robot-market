@@ -3,6 +3,7 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from './components/Header/Header';
 import AppRoutes from './AppRoutes';
+import { RecoilRoot } from "recoil";
 
 function App() {
 
@@ -15,12 +16,14 @@ function App() {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <Header></Header>
-        <AppRoutes />
-      </Router>
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Header></Header>
+          <AppRoutes />
+        </Router>
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 }
 
