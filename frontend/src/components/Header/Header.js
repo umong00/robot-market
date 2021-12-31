@@ -17,6 +17,7 @@ const Header = () => {
     return (
         <>
             <div className="header">
+                <h2>Robot Maker</h2>
                 <div className="cart-icon">
                     <Badge onClick={openCart} count={cartItems.length}>
                         <ShoppingCartOutlined />

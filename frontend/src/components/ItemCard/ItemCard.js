@@ -31,8 +31,8 @@ const ItemCard = (props) => {
 
     const openModal = () => {
         Modal.error({
-          title: 'Warning!!',
-          content: 'You can add more than 5 items in the cart',
+          title: 'Error!!',
+          content: 'You can not add more than 5 items in the cart',
         });
       }
 
