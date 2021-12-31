@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Button, InputNumber } from 'antd';
+import { Button, InputNumber, Modal } from 'antd';
 import moment from 'moment';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import './ItemCard.scss';
-import { useSetRecoilState } from 'recoil';
-import { showCart } from '../../App.recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { cartData, showCart } from '../../App.recoil';
 
 const ItemCard = (props) => {
     const [qty, setQty] = useState(1);
 
     const setCartVisiblity = useSetRecoilState(showCart);
+    const cartItems = useRecoilValue(cartData);
 
     const {item} = props;
     const {name, image, material, stock} = item;
@@ -19,12 +20,21 @@ const ItemCard = (props) => {
     const addToCart = () => {
         if (item.inCart) {
             setCartVisiblity(true);
-        } else {
+        } else if (cartItems.length < 5) {
             item.inCart = true;
             item.qty = qty;
             props.addToCart(item)
+        } else {
+            openModal();
         }
     }
+
+    const openModal = () => {
+        Modal.error({
+          title: 'Warning!!',
+          content: 'You can add more than 5 items in the cart',
+        });
+      }
 
     return (
         <>

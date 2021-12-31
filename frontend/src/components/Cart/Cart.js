@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { cartData } from '../../App.recoil';
 import { InputNumber } from 'antd';
 import './Cart.scss';
 
 const Cart = () => {
-    const [qty, setQty] = useState();
     const cartItemList = useRecoilValue(cartData);
+    const [items, setItems] = useState();
+
+    useEffect(() => {
+        setItems(JSON.parse(JSON.stringify(cartItemList)));
+    }, [cartItemList])
+
+    const changeQuantity = (value, index) => {
+        items[index].qty = value;
+        setItems([...items])
+    }
 
     const renderCartItems = () => {
-        return cartItemList.map((item, index) => {
+        return items.map((item, index) => {
             const price = new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB' }).format(item.price);
 
             return (
@@ -25,10 +34,10 @@ const Cart = () => {
                         <span className="material">{item.material}</span>
                         <div className="flex-div">
                             <span className="in-stock">Available Units: {item.stock}</span>
-                            <InputNumber min={1} defaultValue={item.qty} max={item.stock} onChange={(value) => setQty(value)} />
+                            <InputNumber min={1} defaultValue={item.qty} max={item.stock} onChange={(value) => changeQuantity(value, index)} />
                         </div>
                         <div>
-                            <span className="total-price">Total: <b>{new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB' }).format(item.price * (qty || item.qty))}</b></span>
+                            <span className="total-price">Total: <b>{new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB' }).format(item.price * item.qty)}</b></span>
                         </div>
                     </div>
                 </div>
@@ -37,12 +46,12 @@ const Cart = () => {
     }
 
     return (
-        <div className="cart">
+        <div className="cart displayCart">
             <div className="title">
-                <h3>My Cart</h3>
+                <h3>My Cart ({cartItemList.length})</h3>
             </div>
             <div>
-                {renderCartItems()}
+                {items && renderCartItems()}
             </div>
         </div>
     )

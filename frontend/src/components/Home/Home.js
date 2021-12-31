@@ -8,7 +8,7 @@ import FilterMenu from '../FilterMenu/FilterMenu';
 
 const Home = () => {
     const [items, setItems] = useState([]);
-    const [materialTypes, setMaterialTypes] = useState();
+    const [materialTypes, setMaterialTypes] = useState([]);
     const {data, isLoading, isSuccess} = useQuery('Items', () => fetchItemList());
 
     const getMaterialTypes = (data) => {
@@ -41,7 +41,7 @@ const Home = () => {
                 </div>
             }
             {
-                isSuccess &&
+                isSuccess && items.length &&
                 <div className="view-port">
                     <FilterMenu materialTypes={materialTypes} filterItemList={filterItemList} />
                     <Catalog items={items} />
