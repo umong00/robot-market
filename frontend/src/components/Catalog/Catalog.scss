@@ -1,7 +1,17 @@
-.items-catalog {
+.catalog {
     display: flex;
-    flex-wrap: wrap;
     width: 85%;
-    max-height: 100%;
-    overflow: scroll;
+
+    .items-catalog {
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 100%;
+        overflow: scroll;
+        width: 100%;
+    }
+
+    .transition-items {
+        width: 68%;
+        transition: width 0.5s;
+    }
 }

@@ -17,7 +17,7 @@ const Header = () => {
     return (
         <>
             <div className="header">
-                <div className="cart">
+                <div className="cart-icon">
                     <Badge onClick={openCart} count={cartItems.length}>
                         <ShoppingCartOutlined />
                     </Badge>

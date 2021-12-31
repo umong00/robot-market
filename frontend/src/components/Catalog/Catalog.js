@@ -1,14 +1,15 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import ItemCard from '../ItemCard/ItemCard';
-import { cartData } from '../../App.recoil';
-
+import { cartData, showCart } from '../../App.recoil';
 import './Catalog.scss';
+import Cart from '../Cart/Cart';
 
 const Catalog = (props) => {
     const {items} = props;
 
     const [cartItems, setCartItems] = useRecoilState(cartData);
+    const displayCart = useRecoilValue(showCart);
 
     const addToCart = (item) => {
         setCartItems([...cartItems, item]);
@@ -25,8 +26,14 @@ const Catalog = (props) => {
     }
 
     return (
-        <div className="items-catalog">
-            {renderItemsCard()}
+        <div className="catalog">
+            <div className={`items-catalog ${displayCart ? 'transition-items' : ''}`}>
+                {renderItemsCard()}
+            </div>
+            {
+                displayCart &&
+                <Cart />
+            }
         </div>
     )
 }
